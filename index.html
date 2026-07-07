@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Real-time silver macro metrics against USD, gold, RUB and CNY.">
+    <title>Silver Macro Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="terminal-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Silver Macro Terminal</p>
+            <h1>Серебро к глобальным индикаторам</h1>
+          </div>
+        </div>
+        <div class="env-panel" aria-label="Окружение и обновление данных">
+          <label class="env-select">
+            <span>Среда</span>
+            <select id="environmentSelect">
+              <option value="development">Development</option>
+              <option value="staging">Staging</option>
+              <option value="production">Production</option>
+            </select>
+          </label>
+          <button class="primary-action" id="refreshButton" type="button">
+            <span aria-hidden="true">↻</span>
+            Обновить
+          </button>
+        </div>
+      </header>
+
+      <section class="status-strip" aria-label="Статус рынка">
+        <article><span>Источник</span><strong id="sourceStatus">Подключение...</strong></article>
+        <article><span>Обновлено</span><strong id="updatedAt">-</strong></article>
+        <article><span>Режим</span><strong id="envName">-</strong></article>
+        <article><span>Автообновление</span><strong id="refreshInterval">-</strong></article>
+      </section>
+
+      <section class="hero-grid">
+        <article class="spot-panel">
+          <div class="panel-heading">
+            <div><span class="panel-kicker">XAG/USD</span><h2>Spot silver</h2></div>
+            <span class="live-pill" id="livePill">Live</span>
+          </div>
+          <strong class="spot-price" id="silverUsd">$0.00</strong>
+          <div class="spot-meta"><span id="silverRub">₽0.00</span><span id="silverCny">¥0.00</span></div>
+          <canvas id="sparklineChart" width="760" height="220" aria-label="Динамика серебра"></canvas>
+        </article>
+
+        <article class="ratio-panel">
+          <div class="panel-heading"><div><span class="panel-kicker">Gold / Silver</span><h2>Золотое соотношение</h2></div></div>
+          <strong id="goldSilverRatio">0.00</strong>
+          <p id="ratioNarrative">Загрузка рыночных данных...</p>
+        </article>
+      </section>
+
+      <section class="metric-grid" aria-label="Метрики серебра">
+        <article class="metric-card"><span>Серебро / USD</span><strong id="metricUsd">$0.00</strong><small>цена за тройскую унцию</small></article>
+        <article class="metric-card"><span>Серебро / золото</span><strong id="metricGold">0.0000 oz</strong><small>доля унции золота за 1 oz серебра</small></article>
+        <article class="metric-card"><span>Серебро / RUB</span><strong id="metricRub">₽0.00</strong><small>через USD/RUB</small></article>
+        <article class="metric-card"><span>Серебро / CNY</span><strong id="metricCny">¥0.00</strong><small>через USD/CNY</small></article>
+      </section>
+
+      <section class="market-layout">
+        <article class="table-panel">
+          <div class="panel-heading"><div><span class="panel-kicker">Cross rates</span><h2>Глобальная сетка</h2></div></div>
+          <div class="rate-table" role="table" aria-label="Глобальные показатели серебра">
+            <div role="row"><span role="columnheader">Показатель</span><span role="columnheader">Значение</span><span role="columnheader">Расчет</span></div>
+            <div role="row"><span role="cell">XAG/USD</span><strong role="cell" id="rowUsd">$0.00</strong><span role="cell">spot silver</span></div>
+            <div role="row"><span role="cell">XAU/USD</span><strong role="cell" id="rowGold">$0.00</strong><span role="cell">spot gold</span></div>
+            <div role="row"><span role="cell">Gold/Silver</span><strong role="cell" id="rowRatio">0.00</strong><span role="cell">XAU ÷ XAG</span></div>
+            <div role="row"><span role="cell">USD/RUB</span><strong role="cell" id="rowUsdRub">0.0000</strong><span role="cell">FX server</span></div>
+            <div role="row"><span role="cell">USD/CNY</span><strong role="cell" id="rowUsdCny">0.0000</strong><span role="cell">FX server</span></div>
+          </div>
+        </article>
+
+        <article class="ops-panel">
+          <div class="panel-heading"><div><span class="panel-kicker">Release channels</span><h2>Версии сайта</h2></div></div>
+          <div class="channel-list" id="channelList"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

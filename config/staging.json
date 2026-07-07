@@ -1,0 +1,6 @@
+{
+  "name": "Staging",
+  "refreshMs": 60000,
+  "cache": "no-store",
+  "debug": true
+}

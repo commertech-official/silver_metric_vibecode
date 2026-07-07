@@ -1,0 +1,6 @@
+{
+  "name": "Production",
+  "refreshMs": 30000,
+  "cache": "no-store",
+  "debug": false
+}
